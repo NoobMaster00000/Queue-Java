@@ -1,0 +1,63 @@
+public class Node {
+    int data;
+    Node next;
+    public Node() {
+    }
+}
+class Queue{
+    Node front = null;
+    Node rear = null;
+
+    public Queue() {
+    }
+
+    boolean isEmpty() {
+        return this.front == null;
+    }
+
+    void enqueue(int d) {
+        Node n = new Node();
+        n.data = d;
+        n.next = null;
+        if (this.isEmpty()) {
+            this.front = n;
+        } else {
+            this.rear.next = n;
+        }
+
+        this.rear = n;
+        System.out.println(d + " has been enqueue into the Queue ");
+    }
+
+    int dequeue() {
+        int d = this.front.data;
+        if (this.isEmpty()) {
+            System.out.println("Queue is empty ");
+            return -1;
+        } else {
+            if (this.front.next == null) {
+                this.rear = null;
+            }
+
+            this.front = this.front.next;
+            System.out.println(d + " Has been Dequeue");
+            return d;
+        }
+    }
+
+    void Display() {
+        for(Node temp = this.front; temp != null; temp = temp.next) {
+            System.out.print(temp.data + "-->");
+        }
+
+    }
+
+    public static void main(String[] args) {
+        Queue queue = new Queue();
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.Display();
+    }
+}
